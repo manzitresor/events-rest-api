@@ -13,7 +13,7 @@ import { CreateEventsDto } from './create.events.dto';
 import { UpdateEventsDto } from './update.events.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Event } from './event.entity';
+import { Event } from './entity/event.entity';
 
 @Controller('events')
 export class EventsController {
@@ -25,6 +25,11 @@ export class EventsController {
   @Get()
   async getAll() {
     return await this.repository.find();
+  }
+
+  @Get('practice')
+  async getOne() {
+    return await this.repository.findOne({ where: { id: 1 } });
   }
 
   @Get(':id')
